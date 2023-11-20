@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Proxima Nova Thin';
+    src: url('../fonts/ProximaNova-Extrabld.eot');
+    src: url('../fonts/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ProximaNova-Extrabld.woff') format('woff'),
+    url('../fonts/ProximaNova-Extrabld.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+*{
+    font-family: 'Proxima Nova Thin';
+    text-decoration: none !important;
+
+}
+.navbar-brand{
+    margin-left: 40px;
+}
+
+
+h4{
+    font-size: 48px;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+    border-radius: 8px;
+    
+}
+
+
+
+.head::before{
+    content: "\1F4D1";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 55px;
+}
+
+.my{
+    color: #2a83ff;
+    width: 90vh;
+}
+.form-control{
+    border-color: #2a83ff !important;
+}
+.form-select{
+    border-color: #2a83ff !important;
+}
+.result{
+    margin: 15px;
+    font-size: 32px;
+    width: 80vh;
+    height: 7vh;
+    border-radius: 8px;
+    border: 1px solid #2aff86;
+}
