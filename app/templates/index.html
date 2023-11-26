@@ -8,7 +8,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/site-logo.png')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-
+  <script>
+    $(document).ready(function(){
+      $(this).scrollTop(0);
+    });
+  </script>
   <title>Medical insurance price predictor</title>
 </head>
 <body>
@@ -18,13 +22,13 @@
         <div class="col col-lg-9 col-xl-7">
           <div class="card rounded-3" style="background-color: rgb(252, 252, 252);">
             <div class="card-body p-4">
-        <form method="POST" action="{{url_for('main.info')}}">
+        <form method="POST" action="{{url_for('main.info')}}" novalidate>
 
             <center>
               <h4 class="head">Medical insurance price predictor</h4>
               {% if result %}
               <div class="result">
-                <p>Predicted value : {{result}}💲</p>
+                <p>Predicted insurance price : {{result}}💲</p>
               </div>
               {% endif %}
           {{ form.csrf_token }}
@@ -42,12 +46,20 @@
             {{form.smoking.label}}
           </div>
           <div class="form-outline mb-4">
-            {% for subfield in form.gender %}
-                {{ subfield(class="form-check-input") }}
-                {{ subfield.label(class="form-check-label") }}<br>
+            <br>
+            {% for choice in form.gender %}
+                {{ choice(class="form-check-input") }}
+                {{ choice.label(class="form-check-label") }}<br>
             {% endfor %}
-                {{form.gender.label}}
-          </div>
+            {{ form.gender.label }}
+            <br>
+            {% for error in form.gender.errors %}
+            <div style="background-color: rgb(255, 100, 44);color: rgb(63, 63, 63);">
+              {{ error }}
+            </div>
+            {% endfor %}
+        </div>
+        
           <div class="form-outline mb-4">
             {{form.location( class="form-select")}}
             {{form.location.label}}
