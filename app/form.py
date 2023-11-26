@@ -13,5 +13,5 @@ class Form(FlaskForm):
     children = IntegerField('Children', validators=[DataRequired(message="This field is required.Only integer numbers."),non_negative])
     smoking = BooleanField("Are you smoker?")
     gender =  RadioField('Select your gender', choices=[('1','Male'),('0','Female')])
-    location = SelectField(u'Select your location', choices=[('northeast', 'northeast'), ('northwest', 'northwest'), ('southeast', 'southeast'), ('southwest', 'southwest')])
+    location = SelectField(u'Select your location', choices=[('northeast', 'Northeast'), ('northwest', 'Northwest'), ('southeast', 'Southeast'), ('southwest', 'Southwest')])
     submit = SubmitField('Send')
