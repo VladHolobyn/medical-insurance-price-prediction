@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField,TextAreaField,IntegerField,BooleanField,RadioField,SelectField,FloatField
-from wtforms.validators import DataRequired, Email ,ValidationError
+from wtforms import SubmitField,IntegerField,BooleanField,RadioField,SelectField,FloatField
+from wtforms.validators import DataRequired,ValidationError,InputRequired
 
 
 def non_negative(form, field):
@@ -8,10 +8,10 @@ def non_negative(form, field):
         raise ValidationError('This field accepts only non-negative numbers.')
 
 class Form(FlaskForm):
-    age = IntegerField('Age', validators=[DataRequired(message="This field is required.Only integer numbers."),non_negative])
-    bmi = FloatField('BMI', validators=[DataRequired(message="This field is required.Only float numbers."),non_negative])
-    children = IntegerField('Children', validators=[DataRequired(message="This field is required.Only integer numbers."),non_negative])
+    age = IntegerField('Age', validators=[DataRequired(message="Field is empty or value isn`t integer number(must be greater than 0)."),non_negative])
+    bmi = FloatField('BMI', validators=[DataRequired(message="Field is empty or value isn`t float number(must be greater than 0)."),non_negative])
+    children = IntegerField('Children', validators=[InputRequired(message="Field is empty or value isn`t integer number."),non_negative])
     smoking = BooleanField("Are you smoker?")
     gender =  RadioField('Select your gender', choices=[('1','Male'),('0','Female')])
     location = SelectField(u'Select your location', choices=[('northeast', 'Northeast'), ('northwest', 'Northwest'), ('southeast', 'Southeast'), ('southwest', 'Southwest')])
-    submit = SubmitField('Send')
+    submit = SubmitField('Predict')
