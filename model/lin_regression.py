@@ -22,4 +22,3 @@ class LinearRegression():
     def predict(self, X):
         y = np.dot(X, self.weights) + self.b
         return y
-
