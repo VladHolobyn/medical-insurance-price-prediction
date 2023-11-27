@@ -1,0 +1,83 @@
+{% from "render_field.html" import render_field %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/site-logo.png')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+  <script>
+    $(document).ready(function(){
+      $(this).scrollTop(0);
+    });
+  </script>
+  <title>Medical insurance price predictor</title>
+</head>
+<body>
+  <section   style="min-height: 100vh; background-image: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-left h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card rounded-3" style="background-color: rgb(252, 252, 252);">
+            <div class="card-body p-4">
+        <form method="POST" action="{{url_for('main.info')}}" novalidate>
+
+            <center>
+              <h4 class="head">Medical insurance price predictor</h4>
+              {% if result %}
+              <div class="result">
+                <p>Predicted insurance price : {{result}}💲</p>
+              </div>
+              {% endif %}
+          {{ form.csrf_token }}
+          <div class="form-outline mb-4">
+            {{ render_field(form.age) }}
+          </div>
+          <div class="form-outline mb-4">
+            {{ render_field(form.bmi) }}
+          </div>
+          <div class="form-outline mb-4">
+            {{ render_field(form.children) }}
+          </div>
+          <div class="form-outline mb-4">
+            {{ form.smoking }}
+            {{form.smoking.label}}
+          </div>
+          <div class="form-outline mb-4">
+            <br>
+            {% for choice in form.gender %}
+                {{ choice(class="form-check-input") }}
+                {{ choice.label(class="form-check-label") }}<br>
+            {% endfor %}
+            {{ form.gender.label }}
+            <br>
+            {% for error in form.gender.errors %}
+            <div style="background-color: rgb(255, 100, 44);color: rgb(63, 63, 63);">
+              {{ error }}
+            </div>
+            {% endfor %}
+        </div>
+        
+          <div class="form-outline mb-4">
+            {{form.location( class="form-select")}}
+            {{form.location.label}}
+          </div>
+          <div class="form-outline mb-4">
+            {{ form.submit(class="btn btn-primary btn-lg btn-block",style="margin-top:20px") }}
+          </div>
+
+          </center>
+        </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
+
