@@ -1,19 +1,15 @@
 import numpy as np
-import random
 
-def train_test_split(X, y, test_size, random_state):
-    if random_state is not None:
-        random.seed(random_state)
+def test_split(X, y, test_size, random_state):
+    np.random.seed(random_state)
 
-    num_samples = X.shape[0]
-    indices = list(range(num_samples))
-    random.shuffle(indices)
+    split_index = int(len(X) * test_size)
 
-    split_index = int(num_samples * (1 - test_size))
-    train_indices = indices[:split_index]
-    test_indices = indices[split_index:]
+    shuffled_indices = np.random.permutation(len(X))
 
-    X_train, X_test = X[train_indices], X[test_indices]
-    y_train, y_test = y[train_indices], y[test_indices]
+    xtrain = X[shuffled_indices[:split_index]]
+    xtest = X[shuffled_indices[split_index:]]
+    ytrain = y[shuffled_indices[:split_index]]
+    ytest = y[shuffled_indices[split_index:]]
 
-    return X_train, X_test, y_train, y_test
+    return [xtrain, xtest, ytrain, ytest]
