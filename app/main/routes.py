@@ -16,8 +16,9 @@ def info():
     if form.validate_on_submit():
         location_choices = {
             choice[0]: False if choice[0] not in form.location.data else True for choice in form.location.choices
-            }
-        result = round(model.predict([[
+        }
+
+        input_data = [
             form.age.data,
             int(form.gender.data),
             form.bmi.data,
@@ -26,7 +27,12 @@ def info():
             location_choices.get("northeast"),
             location_choices.get("northwest"),
             location_choices.get("southeast"),
-            location_choices.get("southwest")]
-            ][0]),2)
-    return render_template("index.html",form=form,result=result)
+            location_choices.get("southwest")
+        ]
 
+        # Scale the input using the loaded scaler
+        scaled_input = scaler.transform([input_data])
+
+        result = round(model.predict(scaled_input)[0], 2)
+
+    return render_template("index.html", form=form, result=result)
