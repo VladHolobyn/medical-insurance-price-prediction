@@ -10,3 +10,5 @@ def create_app(config_class=Config):
     app.register_blueprint(main_bp)
 
     return app
+
+app = create_app()  # This line ensures that the app object is created when the module is imported
