@@ -3,10 +3,10 @@ from flask import render_template
 from app.form import Form
 import pickle
 
-with open('model.pkl', 'rb') as f:
+with open('pkl/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-with open('scaler.pkl', 'rb') as f:
+with open('pkl/scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
 @bp.route('/', methods=['POST', 'GET'])
