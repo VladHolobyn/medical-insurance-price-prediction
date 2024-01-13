@@ -1,6 +1,6 @@
 # Medical Insurance Costs
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://medical-insurance-price-prediction-qm5s.onrender.com/)
+[![Flask App](https://img.shields.io/badge/-Flask_Demo-white?logo=flask&labelColor=%2303fcf4)](https://medical-insurance-price-prediction-qm5s.onrender.com/)
 
 This regression project focuses on predicting medical insurance costs for individuals based on various factors such as age, BMI, smoking habits, and geographical location. 
 
@@ -48,4 +48,5 @@ py -m flask run
 ```
 
 ## Preview
-![Preview](app/screenshots/preview.png)
+![image](https://github.com/VladHolobyn/medical-insurance-price-prediction/assets/125756054/ff6ce973-436c-4c76-8aa9-cd994d6d54f0)
+
